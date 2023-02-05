@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PessoaNotificada {
+public class PessoaNotificada implements Notificacao{
 
     Scanner scanner = new Scanner(System.in);
     List<PessoaNotificada> pessoasNotificadas = new ArrayList();
@@ -33,23 +33,34 @@ public class PessoaNotificada {
 
     }
 
-//    @Override
-//    public void cadastrarNomeMensagemNotificado(PessoaNotificada objetoPessoaNotificada) {
-//        //pessoasNotificadas.size() = qtdPessoas;
-//
-//
-//    }
-//
-//
-//    @Override
-//    public void exibirNomeMensagemNotificado() {
-//
-//    }
+    @Override
+    public void cadastrarNomeMensagemNotificado() {
 
-//    @Override
-//    public void toString () {
-//    }
+    }
 
+    @Override
+    public void cadastrarNomeMensagemNotificado(int qtdPessoas) {
 
+    }
+
+    @Override
+    public void cadastrarNomeMensagemNotificado(int qtdPessoas, List<PessoaNotificada> pessoasNotificadas) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite os nomes: ");
+        //inserindo os nomes
+        for (int posicao = 0; posicao < qtdPessoas; posicao++) {
+            PessoaNotificada pessoaNotificada = new PessoaNotificada();//objeto criado
+            scanner.nextLine();
+            pessoaNotificada.setNomeNotificado(scanner.nextLine());
+            pessoasNotificadas.add(pessoaNotificada);
+        }
+    }
+
+    @Override
+    public void exibirNomeMensagemNotificado() {
+        for (PessoaNotificada cadaObjetoDaLista : pessoasNotificadas) {
+            System.out.println(getNomeNotificado() + " received a massage: -> " + getMensagemNotificado());
+        }
+    }
 
 }

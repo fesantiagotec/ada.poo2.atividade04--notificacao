@@ -31,43 +31,34 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         List<PessoaNotificada> pessoasNotificadas = new ArrayList<>();
+        PessoaNotificada pessoaNotificada = new PessoaNotificada();
 
         int qtdPessoas = 0;
 
-        do {
-            receberQuantidadePessoasNotificadas();
-            qtdPessoas = scanner.nextInt();
+        receberQuantidadePessoasNotificadas();
+        qtdPessoas = scanner.nextInt();
 
-            //cadastrarNomeMensagemNotificado(método da interface)
-            System.out.println("Digite os nomes: ");
-            //inserindo os nomes
-            for (int posicao = 0; posicao < qtdPessoas; posicao++) {
-                PessoaNotificada pessoaNotificada = new PessoaNotificada();//objeto criado
-                scanner.nextLine();
-                pessoaNotificada.setNomeNotificado(scanner.nextLine());
-                pessoasNotificadas.add(pessoaNotificada);
-            }
+        do {
+            pessoaNotificada.cadastrarNomeMensagemNotificado(qtdPessoas, pessoasNotificadas);
 
             //inserindo mensagem
             System.out.println("Digite a mensagem da notificação: ");
+            scanner.nextLine();
+            String mensagem = scanner.nextLine();
             for (PessoaNotificada cadaObjetoDaLista : pessoasNotificadas) {
                 if (cadaObjetoDaLista.getNomeNotificado()!= null) {
-                    cadaObjetoDaLista.setMensagemNotificado(scanner.nextLine());
+                    cadaObjetoDaLista.setMensagemNotificado(mensagem);
                 }
             }
 
-            //exibirNomeMensagemNotificado (método da interface)
-            for (PessoaNotificada cadaObjetoDaLista : pessoasNotificadas) {
-                System.out.println(cadaObjetoDaLista.getNomeNotificado() + " received a massage: -> " + cadaObjetoDaLista.getMensagemNotificado());
-
-            }
-
+            pessoaNotificada.exibirNomeMensagemNotificado();
+            
             receberQuantidadePessoasNotificadas();
             qtdPessoas = scanner.nextInt();
 
-            if (qtdPessoas != 0) {
-                limparLista(pessoasNotificadas);
-            }
+//            if (qtdPessoas != 0) {
+//                limparLista(pessoasNotificadas);
+//            }
 
         } while(qtdPessoas != 0);
 
